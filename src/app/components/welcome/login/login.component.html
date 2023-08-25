@@ -1,0 +1,40 @@
+<p-toast></p-toast>
+<p-card header="Login" [style]="{ width: '360px',margin:'0 auto' }" class="center">
+    <!--<app-loadingspinner></app-loadingspinner>-->
+
+    <app-progress-bar *ngIf="loading"></app-progress-bar>
+    <form [formGroup]="FormLogin" (ngSubmit)="LoginIn()">
+        <div class="inputs">
+
+
+            <div class="p-inputgroup">
+
+                <input pInputText placeholder="E-mail" formControlName="email" type="email" />
+
+            </div>
+            <span *ngIf="FormLogin.get('email')!.hasError('required')&&FormLogin.get('email')!.touched" [ngStyle]="{color: 'var(--red-400)'}">
+                Please, enter an E-mail to continue.
+            </span>
+            <span *ngIf="FormLogin.get('email')!.hasError('email')&&FormLogin.get('email')!.touched" [ngStyle]="{color: 'var(--red-400)'}">
+                Please, enter a correct E-mail
+            </span>
+            <div class="p-inputgroup">
+
+                <input pInputText placeholder="Password" type="password" formControlName="password" />
+            </div>
+            <span *ngIf="FormLogin.get('password')!.hasError('required')&&FormLogin.get('password')!.touched" [ngStyle]="{color: 'var(--red-400)'}">
+                Please, enter a password to continue.
+            </span>
+        </div>
+        <div class="login-buttons">
+            <p-button label="Login" styleClass="p-button-raised p-button-warning" type="submit" [disabled]="FormLogin.invalid"></p-button>
+            <p-button label="Register" styleClass="p-button-secondary" routerLink="/welcome/register"></p-button>
+        </div>
+    </form>
+
+
+
+
+
+</p-card>
+<app-confirmdioalog title="Account not activated"></app-confirmdioalog>

@@ -1,0 +1,17 @@
+<div class="product" *ngIf="product else skeleton">
+<h1>{{product.name}}</h1>
+</div>
+
+
+<ng-template #skeleton>
+    <p-skeleton width="100%" styleClass="mb-2" height="9rem"></p-skeleton>
+    <p-skeleton width="100%" styleClass="mb-2" height="9rem"></p-skeleton>
+    <p-skeleton width="100%" styleClass="mb-2" height="9rem"></p-skeleton>
+    <p-skeleton width="100%" styleClass="mb-2" height="9rem"></p-skeleton>
+    <p-skeleton width="100%" styleClass="mb-2" height="9rem"></p-skeleton>
+    <p-skeleton width="100%" styleClass="mb-2" height="9rem"></p-skeleton>
+    <p-skeleton width="100%" styleClass="mb-2" height="9rem"></p-skeleton>
+    <p-skeleton width="100%" styleClass="mb-2" height="9rem"></p-skeleton>
+    <p-skeleton width="100%" styleClass="mb-2" height="9rem"></p-skeleton>
+
+</ng-template>

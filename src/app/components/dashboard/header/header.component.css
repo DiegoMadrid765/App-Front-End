@@ -1,0 +1,13 @@
+.p-menubar-end {
+    margin-left: 0;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.card.flex.justify-content-center {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}

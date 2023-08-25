@@ -1,0 +1,12 @@
+<div class="product">
+    <p-image [src]="product.imageurl" [preview]="true" alt="Image" width="100%">
+        <ng-template pTemplate="indicator">
+            <i class="pi pi-check"></i>
+        </ng-template>
+    </p-image>
+    <div class="description">
+        <h2>{{product.name|titlecase}}</h2>
+        <p>{{product.description}}</p>
+        <p>{{product.price|currency}}</p>
+    </div>
+</div>
