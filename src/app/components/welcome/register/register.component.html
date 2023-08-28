@@ -113,7 +113,7 @@
                 </ng-template>
             </p-dropdown>
 
-            <p-dropdown [options]="cities" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a City" formControlName="city" (onChange)="changeCountrySelected()" (onFilter)="filter($event)" [style]="{'width': '100%'}" [disabled]="true" (onChange)="changeSelectedCity()">
+            <p-dropdown [options]="cities" [filter]="true" filterBy="name" [virtualScrollItemSize]="38" [showClear]="true" placeholder="Select a City" formControlName="city" (onChange)="changeCountrySelected()" (onFilter)="filter($event)" [style]="{'width': '100%'}" [disabled]="true" (onChange)="changeSelectedCity()">
                 <ng-template pTemplate="selectedItem">
                     <div class="flex align-items-center gap-2 countries" *ngIf="selectedCity">
 

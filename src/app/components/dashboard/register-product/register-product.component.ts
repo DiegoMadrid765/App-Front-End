@@ -20,14 +20,15 @@ export class RegisterProductComponent {
     { name: 'OUTOFSTOCK' },
   ];
   image!: File;
+  images: File[] = [];
   constructor(
     private fb: FormBuilder,
     private httpproduct: ProductService,
     private messageService: MessageService,
     private router: Router,
-    private title:Title
+    private title: Title
   ) {
-    title.setTitle("Sell");
+    title.setTitle('Sell');
     this.formRegister = fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
@@ -36,9 +37,11 @@ export class RegisterProductComponent {
     });
   }
   getImage(event: any) {
-    console.log(this.image);
-
     this.image = event.target.files[0];
+   
+
+    this.images.push(this.image);
+  
   }
   RegisterProduct() {
     if (this.formRegister.invalid) {
@@ -50,7 +53,7 @@ export class RegisterProductComponent {
       price: this.formRegister.value.price,
       image: this.image,
       stock: this.formRegister.value.stock,
-      hidden:0
+      hidden: 0,
     };
     this.httpproduct.registerprodcut(product).subscribe(
       (data) => {
@@ -71,7 +74,7 @@ export class RegisterProductComponent {
             'Please, you must upload an iamge to continue',
             'error'
           );
-        }else if(error.error.error == 'heavyimage'){
+        } else if (error.error.error == 'heavyimage') {
           this.showMessage(
             'Size Image',
             'Please, the weight of the image cannot exceed 5 megabytes',

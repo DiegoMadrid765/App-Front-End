@@ -26,15 +26,15 @@ import { UserService } from 'src/app/services/user.service';
 export class RegisterComponent implements OnInit {
   formRegister: FormGroup;
   minDate: Date = new Date();
-  emailtaken = true;
+  emailtaken = false;
   loading = false;
   countries: Country[] = [];
-  cities:City[]=[];
+  cities: City[] = [];
   selectedCountry!: Country;
-  selectedCity:City={
-    name:"",
-    Id:0,
-    countryCode:""
+  selectedCity: City = {
+    name: '',
+    Id: 0,
+    countryCode: '',
   };
   genders: Gender[] = [
     { name: 'Male', value: 'Male' },
@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit {
     },
   ];
   selectedGender: string = '';
-  
+
   constructor(
     private title: Title,
     private fb: FormBuilder,
@@ -64,9 +64,9 @@ export class RegisterComponent implements OnInit {
         birthdate: [this.minDate, Validators.required],
         gender: [this.genders[0].value, Validators.required],
         email: ['', [Validators.required, Validators.email]],
-        country:["",Validators.required],
-        city:["",Validators.required],
-        homeaddress:["",Validators.required]
+        country: ['', Validators.required],
+        city: ['', Validators.required],
+        homeaddress: ['', Validators.required],
       },
       {
         validators: [this.checkPassword],
@@ -77,7 +77,6 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.minDate.setFullYear(this.minDate.getFullYear() - 18);
- 
   }
 
   checkPassword(group: FormGroup): any {
@@ -91,21 +90,20 @@ export class RegisterComponent implements OnInit {
       email: this.formRegister.value.email,
     };
 
-
-    this.httpLogin.checkEmail(Object).subscribe((data) => {
-     
-
-      if (data.message == 'yes') {
-        this.emailtaken = false;
-      } else {
+    this.httpLogin.checkEmail(Object).subscribe(
+      (data) => {
+        if (data.message == 'yes') {
+          this.emailtaken = false;
+        } else {
+          this.emailtaken = true;
+        }
+      },
+      (error) => {
         this.emailtaken = true;
       }
-    },error=>{
-      this.emailtaken = true;
-    });
+    );
   }
   registerUser() {
-   
     if (this.formRegister.valid && !this.emailtaken) {
       this.loading = true;
       const user: User = {
@@ -116,16 +114,13 @@ export class RegisterComponent implements OnInit {
         birthdate: this.formRegister.value.birthdate,
         gender: this.formRegister.value.gender,
         email: this.formRegister.value.email.trim(),
-        address:{
-          homeadress:this.formRegister.value.homeaddress,
-          cityId:this.formRegister.value.city.id,
-          userId:0
-        }
+        address: {
+          homeadress: this.formRegister.value.homeaddress,
+          cityId: this.formRegister.value.city.id,
+          userId: 0,
+        },
       };
-      
-    
-      
-   
+
       this.httpUser.registerUser(user).subscribe(
         (data) => {
           this.showMessage(
@@ -140,8 +135,9 @@ export class RegisterComponent implements OnInit {
           }, 10000);
         },
         (error) => {
-          this.showMessage('Error', 'An error has happened', 'error');
-          this.loading = false;
+     
+          this.loading=false;
+        this.showMessage(error.error.title,error.error.description,error.error.type);
         }
       );
     }
@@ -157,37 +153,37 @@ export class RegisterComponent implements OnInit {
   getCountries() {
     this.httpcountry.getCountries().subscribe((data) => {
       this.countries = data;
-     
     });
   }
-  changeCountrySelected(){
+  changeCountrySelected() {
+    this.selectedCountry = this.formRegister.value.country;
 
-
-this.selectedCountry=this.formRegister.value.country;
-
+    this.getCitiesByCode(this.selectedCountry.code);
   }
-  getcitiesByCode(code:string,name:string){
-    this.httpcountry.getCitiesByCodeandName(code,name).subscribe(data=>{
-      this.cities=[];
-this.cities=data;
-
-
-
-    })
+  getCitiesByCodeandName(code: string, name: string) {
+    this.httpcountry.getCitiesByCodeandName(code, name).subscribe((data) => {
+ 
+      this.cities = data;
+    });
   }
-  changeSelectedCity(){
-    this.selectedCity=this.formRegister.value.city;
+
+  getCitiesByCode(code: string) {
+    this.httpcountry.getCitiesByCode(code).subscribe((data) => {
+  
     
+      this.cities = data;
+    });
   }
-  filter(event:any){
-    if(event.filter==null){
+
+  changeSelectedCity() {
+    this.selectedCity = this.formRegister.value.city;
+  }
+  filter(event: any) {
+    if (event.filter == null || !this.selectedCity) {
       return;
     }
-    if(event.filter.trim().length>=3){
-      this.getcitiesByCode(this.selectedCountry.code,event.filter);
+    if (event.filter.trim().length >= 3) {
+      this.getCitiesByCodeandName(this.selectedCountry.code, event.filter);
     }
-    
-    
-    
   }
 }

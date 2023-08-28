@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { MenuItem, MessageService } from 'primeng/api';
 import { User } from 'src/app/models/User';
 import { ProductService } from 'src/app/services/product.service';
@@ -16,7 +17,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private router: Router,
     private httpproduct: ProductService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private cookiesservice: CookieService
   ) {
     this.items = [
       {
@@ -37,11 +39,7 @@ export class HeaderComponent implements OnInit {
           },
         ],
       },
-      {
-        label: 'Sell',
-        icon: 'pi pi-fw pi-dollar',
-        routerLink: 'sell',
-      },
+
       {
         label: 'Purchases',
         icon: 'pi pi-fw pi-gift',
@@ -58,15 +56,17 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit(): void {}
   logOut() {
-    localStorage.removeItem('token');
+    //localStorage.removeItem('token');
+    console.log(this.cookiesservice.get("token"));
+    
+   alert("log out")
     this.router.navigate(['/welcome/login']);
+    //  this.cookiesservice.delete('token');  
   }
 
   GetPurchasesForPdf() {
     this.httpproduct.GetPurchasesForPdf().subscribe(
       (data) => {
-        console.log(data);
-        
         this.showMessage(
           'Purchases sent',
           'Check your Email with all purchases you have made so far.',

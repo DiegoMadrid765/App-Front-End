@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/models/Product';
 import { ProductService } from 'src/app/services/product.service';
+import { StringServiceService } from 'src/app/services/string-service.service';
 
 @Component({
   selector: 'app-product',
@@ -11,17 +13,18 @@ import { ProductService } from 'src/app/services/product.service';
 export class ProductComponent implements OnInit{
   productid:number=0;
   product!:Product;
-  constructor(private route: ActivatedRoute,private httpproduct:ProductService,private router:Router) {
+  constructor(private route: ActivatedRoute,private httpproduct:ProductService,private router:Router,private title:Title,private stringservice:StringServiceService) {
 
    
   }
   ngOnInit(){
       
   this.productid=this.route.snapshot.params["id"];
-   console.log(this.productid);
+  
   this.httpproduct.GetProductDetails(this.productid).subscribe(data=>{
-    console.log(data);
+  
     this.product=data;
+    this.title.setTitle(`Product - ${this.stringservice.getFirstletterUpper(this.product.name)} `);
   },error=>{
     this.router.navigate([""]);
   })

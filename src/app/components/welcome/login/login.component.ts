@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import {
   ConfirmationService,
   MessageService,
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit {
     fb: FormBuilder,
     private messageService: MessageService,
     private router: Router,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private cookieservice: CookieService
   ) {
     title.setTitle('Login');
     this.FormLogin = fb.group({
@@ -47,8 +49,10 @@ export class LoginComponent implements OnInit {
       );
       this.httplogin.login(login).subscribe(
         (data) => {
-          console.log(data.token);
-          localStorage.setItem('token', data.token);
+          //localStorage.setItem('token', data.token);
+          const expirationDate = new Date();
+          expirationDate.setDate(expirationDate.getDate() + 1);
+          this.cookieservice.set('token', data.token, expirationDate);
           this.FormLogin.reset();
           this.loading = false;
           this.router.navigate(['/dashboard']);

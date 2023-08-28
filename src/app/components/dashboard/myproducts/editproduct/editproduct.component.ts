@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { finalize, forkJoin, pipe } from 'rxjs';
 import { Product } from 'src/app/models/Product';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -17,19 +18,26 @@ export class EditproductComponent {
     private router: Router
   ) {
     this.id = routed.snapshot.params['id'];
+  }
+  ngOnInit() {
     this.getProductEdit();
   }
-  getProductEdit() {
-    this.httpproduct.SeeEditProduct(this.id).subscribe(
-      (data) => {
-        this.product = data;
-        console.log(this.product);
+  async getProductEdit() {
+    this.httpproduct
+      .SeeEditProduct(this.id)
+      .subscribe(
+        (data) => {
+          this.product = data;
         
-      },
-      (error) => {
-        console.log(error);
-        this.router.navigate(['dashboard/myproducts']);
-      }
-    );
+        },
+        (error) => {
+      
+          this.router.navigate(['dashboard/myproducts']);
+        }
+      )
   }
+
+
+  
+
 }

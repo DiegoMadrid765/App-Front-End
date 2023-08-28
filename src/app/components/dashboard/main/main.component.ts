@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { DataViewLayoutOptions } from 'primeng/dataview';
@@ -21,27 +22,31 @@ export class MainComponent implements OnInit {
     private httpuser: UserService,
     private httpproduct: ProductService,
     private messageService: MessageService,
-    private router:Router
-  ) {}
+    private router: Router,
+    private title: Title
+  ) {
+    title.setTitle('Main');
+  }
 
   ngOnInit(): void {
-    
-    this.httpuser.GetUserData().subscribe((data) => {
-      this.UserData = data;
-    },error=>{
-      console.log("error");
-      this.router.navigate(['welcome/login']);
-      
-      
-    });
-    this.httpproduct.getProducts().subscribe((data) => {
-      this.products = data;
-      this.loaded = true;
- 
-      
-    },error=>{
-      console.log("error");
-    });
+    this.httpuser.GetUserData().subscribe(
+      (data) => {
+        this.UserData = data;
+      },
+      (error) => {
+
+        this.router.navigate(['welcome/login']);
+      }
+    );
+    this.httpproduct.getProducts().subscribe(
+      (data) => {
+        this.products = data;
+        this.loaded = true;
+      },
+      (error) => {
+       
+      }
+    );
   }
   getSeverity(product: string) {
     switch (product) {
@@ -60,13 +65,18 @@ export class MainComponent implements OnInit {
   }
 
   buyProduct(idproduct: number) {
-   
-    
-    this.httpproduct.buyProduct(idproduct).subscribe((data) => {
-      this.showMessage("successful purchase","Your purchase has made successfully","success");
-    },error=>{
-      this.showMessage('Error', 'An error has happened', 'error');
-    });
+    this.httpproduct.buyProduct(idproduct).subscribe(
+      (data) => {
+        this.showMessage(
+          'successful purchase',
+          'Your purchase has made successfully',
+          'success'
+        );
+      },
+      (error) => {
+        this.showMessage('Error', 'An error has happened', 'error');
+      }
+    );
   }
 
   showMessage(title: string, description: string, logo: string) {
@@ -77,9 +87,7 @@ export class MainComponent implements OnInit {
     });
   }
 
-  GoProduct(id:number){
-    
-    
-    this.router.navigate(["dashboard/product",id]);
-      }
+  GoProduct(id: number) {
+    this.router.navigate(['dashboard/product', id]);
+  }
 }

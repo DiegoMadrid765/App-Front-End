@@ -21,7 +21,12 @@ this.endpoint="api/Country/getCountries";
 return this.http.get<Country[]>(`${this.apiurl}${this.endpoint}`);
    }
    getCitiesByCodeandName(code:string,name:string):Observable<City[]>{
-    this.endpoint=`api/Country/getCitiesByCode?code=${code}&name=${name}`;
+    this.endpoint=`api/Country/getCitiesByCodeAndName?code=${code}&name=${name}`;
+    return this.http.get<City[]>(`${this.apiurl}${this.endpoint}`);
+   }
+
+   getCitiesByCode(code:string):Observable<City[]>{
+    this.endpoint=`api/Country/getCitiesByCode?code=${code}`;
     return this.http.get<City[]>(`${this.apiurl}${this.endpoint}`);
    }
 }

@@ -1,4 +1,4 @@
-<div class="product">
+<div class="product" *ngIf="product else skeleton">
     <p-image [src]="product.imageurl" [preview]="true" alt="Image" width="100%">
         <ng-template pTemplate="indicator">
             <i class="pi pi-check"></i>
@@ -10,3 +10,16 @@
         <p>{{product.price|currency}}</p>
     </div>
 </div>
+
+<ng-template #skeleton>
+    <p-skeleton width="100%" styleClass="mb-2" height="9rem"></p-skeleton>
+    <p-skeleton width="100%" styleClass="mb-2" height="9rem"></p-skeleton>
+    <p-skeleton width="100%" styleClass="mb-2" height="9rem"></p-skeleton>
+    <p-skeleton width="100%" styleClass="mb-2" height="9rem"></p-skeleton>
+    <p-skeleton width="100%" styleClass="mb-2" height="9rem"></p-skeleton>
+    <p-skeleton width="100%" styleClass="mb-2" height="9rem"></p-skeleton>
+    <p-skeleton width="100%" styleClass="mb-2" height="9rem"></p-skeleton>
+    <p-skeleton width="100%" styleClass="mb-2" height="9rem"></p-skeleton>
+    <p-skeleton width="100%" styleClass="mb-2" height="9rem"></p-skeleton>
+
+</ng-template>

@@ -16,13 +16,14 @@ export class MyproductsComponent {
   constructor(private httpproduct:ProductService,private title:Title,private router:Router) {
   title.setTitle("My products");
     this.getMyproducts();
+    
   }
 
 
   getMyproducts(){
     this.httpproduct.getMyProducts().subscribe(data=>{
       this.products=data;
-      console.log(this.products);
+
       
       this.loaded=true;
     },error=>{
