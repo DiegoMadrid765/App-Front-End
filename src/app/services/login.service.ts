@@ -28,16 +28,11 @@ export class LoginService {
     return this.http.post(`${this.apiurl}${this.endpoint}`, login);
   }
 
-  getTokenDecode(): any {
-    const helper = new JwtHelperService();
-    const decodedtoke = helper.decodeToken(this.cookiesservice.get('token'));
-    return decodedtoke;
-  }
 
   userUtenticated(): boolean {
     try {
       const helper = new JwtHelperService();
-      helper.decodeToken(this.cookiesservice.get('token'));
+      helper.decodeToken(localStorage.getItem("token")!);
       return true;
     } catch (error) {
       return false;

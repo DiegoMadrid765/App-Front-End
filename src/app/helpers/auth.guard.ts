@@ -28,11 +28,14 @@ export class AuthGUard implements CanActivate {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
-    if (!this.cookiesservice.get('token')) {
-      this.router.navigate(['welcome/login']);
-    } else if (!this.httplogin.userUtenticated) {
-      this.cookiesservice.delete('token');
-      this.router.navigate(['welcome/login']);
+    if (!localStorage.getItem("token")) {
+      //this.cookiesservice.delete('token');
+      localStorage.removeItem("token")
+      this.router.navigate(['/welcome/login']);
+    }else if(!this.httplogin.userUtenticated()){
+      //this.cookiesservice.delete('token');
+      localStorage.removeItem("token")
+      this.router.navigate(['/welcome/login']);
     }
     return true;
   }

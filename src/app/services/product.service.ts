@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Variables } from 'src/assets/enviroment';
 import { Product, ProductDTO } from '../models/Product';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
-
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { saveAs } from 'file-saver';
 @Injectable({
   providedIn: 'root',
 })
@@ -13,8 +13,6 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   registerprodcut(product: ProductDTO): Observable<any> {
- 
-
     const formData = new FormData();
     formData.append('name', product.name);
     formData.append('description', product.description);
@@ -56,20 +54,28 @@ export class ProductService {
   }
 
   GetPurchasesForPdf(): Observable<any> {
-    this.endpoint = 'api/Product/GetPurchasesForPdf';
+    this.endpoint = 'api/product/GetPurchasesForPdf';
 
     return this.http.get(`${this.apiurl}${this.endpoint}`);
   }
 
   GetProductDetails(id: number): Observable<Product> {
-    this.endpoint = `api/Product/GetProductDetails?id=${id}`;
+    this.endpoint = `api/product/GetProductDetails?id=${id}`;
 
     return this.http.get<Product>(`${this.apiurl}${this.endpoint}`);
   }
 
   SeeEditProduct(id: number): Observable<Product> {
-    this.endpoint = `api/Product/SeeEditProduct?id=${id}`;
+    this.endpoint = `api/product/SeeEditProduct?id=${id}`;
 
     return this.http.get<Product>(`${this.apiurl}${this.endpoint}`);
+  }
+  downloadPdf(): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.endpoint = 'api/product/DownloadPDFPurchases';
+    return this.http.get(`${this.apiurl}${this.endpoint}`, {
+      headers,
+      responseType: 'arraybuffer',
+    });
   }
 }

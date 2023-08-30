@@ -47,6 +47,7 @@ import { ImageModule } from 'primeng/image';
 import { AccordionModule } from 'primeng/accordion';
 import { ProductComponent } from './components/dashboard/product/product.component';
 import { EditproductComponent } from './components/dashboard/myproducts/editproduct/editproduct.component';
+import { FileSaverModule } from 'ngx-filesaver';
 @NgModule({
   declarations: [
     AppComponent,

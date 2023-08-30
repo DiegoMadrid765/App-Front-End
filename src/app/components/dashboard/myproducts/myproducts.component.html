@@ -1,5 +1,5 @@
 <div class="card mt-2" *ngIf="loaded else skeleton">
-    <p-button label="Sell a new product" routerLink="sell" icon="pi pi-check"></p-button> 
+    <p-button class="button-add" label="Sell a new product" routerLink="/dashboard/sell" icon="pi pi-plus"></p-button> 
     <p-dataView #dv [value]="products" [rows]="5" [paginator]="true">
         
         <ng-template let-product pTemplate="listItem">
