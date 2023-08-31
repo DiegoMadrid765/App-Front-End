@@ -31,6 +31,7 @@ export class RegisterComponent implements OnInit {
   countries: Country[] = [];
   cities: City[] = [];
   selectedCountry!: Country;
+  citiesloaded:boolean=false;
   selectedCity: City = {
     name: '',
     Id: 0,
@@ -103,6 +104,10 @@ export class RegisterComponent implements OnInit {
       }
     );
   }
+  VerForumulario(){
+    console.log(this.formRegister);
+    
+  }
   registerUser() {
     if (this.formRegister.valid && !this.emailtaken) {
       this.loading = true;
@@ -116,7 +121,7 @@ export class RegisterComponent implements OnInit {
         email: this.formRegister.value.email.trim(),
         address: {
           homeadress: this.formRegister.value.homeaddress,
-          cityId: this.formRegister.value.city.id,
+          cityId: this.formRegister.value.city,
           userId: 0,
         },
       };
@@ -156,8 +161,10 @@ export class RegisterComponent implements OnInit {
     });
   }
   changeCountrySelected() {
+    
     this.selectedCountry = this.formRegister.value.country;
-
+console.log(this.selectedCountry);
+this.cities=[];
     this.getCitiesByCode(this.selectedCountry.code);
   }
   getCitiesByCodeandName(code: string, name: string) {

@@ -32,7 +32,7 @@ export class LoginService {
   userUtenticated(): boolean {
     try {
       const helper = new JwtHelperService();
-      helper.decodeToken(localStorage.getItem("token")!);
+      helper.decodeToken(this.cookiesservice.get("token")!);
       return true;
     } catch (error) {
       return false;

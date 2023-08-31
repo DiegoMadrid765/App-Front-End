@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit() {
     this.primengConfig.ripple = true;
-    this.title.setTitle("Login");
+    this.title.setTitle('Login');
   }
 
   LoginIn() {
@@ -50,11 +50,13 @@ export class LoginComponent implements OnInit {
       );
       this.httplogin.login(login).subscribe(
         (data) => {
-          //localStorage.setItem('token', data.token);
+          console.log(data);
+
           const expirationDate = new Date();
           expirationDate.setDate(expirationDate.getFullYear() + 1);
-          //this.cookieservice.set('token', data.token, expirationDate);
-          localStorage.setItem("token",data.token)
+       
+          this.cookieservice.set('token', data.token, expirationDate);
+
           this.FormLogin.reset();
           this.loading = false;
           this.router.navigate(['/dashboard']);

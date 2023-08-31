@@ -1,6 +1,6 @@
 <p-toast></p-toast>
-<h2 *ngIf="UserData">Welcome {{UserData.names|titlecase}} {{UserData.lastnames|titlecase}}!</h2>
-<div class="card" *ngIf="loaded else skeleton">
+<h2 *ngIf="UserData">Welcome, {{UserData.names|titlecase}} {{UserData.lastnames|titlecase}}!</h2>
+<div class="card" *ngIf="products.length!=0 else skeleton">
     <p-dataView #dv [value]="products" [rows]="5" [paginator]="true">
         <ng-template let-product pTemplate="listItem">
             <div class="col-12">

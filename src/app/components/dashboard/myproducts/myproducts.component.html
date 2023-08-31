@@ -17,10 +17,10 @@
                         </div>
                         <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
                             <span class="text-2xl font-semibold">{{product.price|currency }}</span>
-                            <button style="background-color: red; border: 1px solid white;" pButton icon="pi pi-pencil" label="Edit product" class="md:align-self-end mb-2 p-button-rounded" (click)="GoProduct(product.id)"></button>
-                            <button pButton icon="pi pi-eye-slash" styleClass="p-button-danger" label="Hide product" ng class="md:align-self-end mb-2 p-button-rounded" *ngIf="product.hidden==0 else show" (click)="setHideProduct(product.id)"></button>
+                            <button  pButton icon="pi pi-pencil" label="Edit product" class="md:align-self-end mb-2 p-button-rounded" (click)="GoProduct(product.id)"></button>
+                            <button pButton icon="pi pi-eye-slash" style="background-color: #DC2626; border: 1px solid white;" styleClass="p-button-danger" label="Hide product" ng class="md:align-self-end mb-2 p-button-rounded" *ngIf="product.hidden==0 else show" (click)="setHideProduct(product.id)"></button>
                             <ng-template #show>
-                                <button pButton icon="pi pi-eye" styleClass="p-button-success" label="Show product" ng class="md:align-self-end mb-2 p-button-rounded" (click)="setHideProduct(product.id)"></button>
+                                <button pButton icon="pi pi-eye" style="background-color: #22C55E; border: 1px solid white;" styleClass="p-button-success" label="Show product" ng class="md:align-self-end mb-2 p-button-rounded" (click)="setHideProduct(product.id)"></button>
 
                             </ng-template>
 

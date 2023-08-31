@@ -32,3 +32,10 @@
     align-items: center;
     gap: 2px;
 }
+p-calendar#Birthdate {
+    padding: 0;
+}
+
+.flex.align-items-center.text-primary.ng-star-inserted {
+    color: black !important;
+}

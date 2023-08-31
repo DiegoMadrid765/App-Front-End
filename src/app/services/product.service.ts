@@ -3,7 +3,6 @@ import { Variables } from 'src/assets/enviroment';
 import { Product, ProductDTO } from '../models/Product';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { saveAs } from 'file-saver';
 @Injectable({
   providedIn: 'root',
 })
@@ -19,7 +18,6 @@ export class ProductService {
     formData.append('price', product.price.toString());
     formData.append('image', product.image);
     formData.append('stock', product.stock);
-
     this.endpoint = 'api/Product/RegisterProduct';
 
     return this.http.post(`${this.apiurl}${this.endpoint}`, formData);
@@ -70,9 +68,10 @@ export class ProductService {
 
     return this.http.get<Product>(`${this.apiurl}${this.endpoint}`);
   }
-  downloadPdf(): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+ 
+  DownloadPDFPurchases(): Observable<any> {
     this.endpoint = 'api/product/DownloadPDFPurchases';
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.get(`${this.apiurl}${this.endpoint}`, {
       headers,
       responseType: 'arraybuffer',

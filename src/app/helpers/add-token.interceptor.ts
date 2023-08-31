@@ -18,8 +18,8 @@ export class AddTokenInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-     //token = this.cookiesservice.get('token');
-     const token=localStorage.getItem("token")
+  const token = this.cookiesservice.get('token');
+    
     if (token) {
       request = request.clone({
         setHeaders: { Authorization: `Bearer ${token}` },
@@ -30,8 +30,8 @@ export class AddTokenInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         console.log(error.status);
         if (error.status === 0 || error.status === 401) {
-          //this.cookiesservice.delete('token');
-          localStorage.removeItem("token");
+          this.cookiesservice.delete('token');
+         
           this.router.navigate(['welcome/login']);
         }
         return throwError(error);

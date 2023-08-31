@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { DataViewLayoutOptions } from 'primeng/dataview';
 import { Product } from 'src/app/models/Product';
 import { User } from 'src/app/models/User';
 import { ProductService } from 'src/app/services/product.service';
