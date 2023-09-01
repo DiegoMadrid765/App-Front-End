@@ -43,7 +43,7 @@ export class MainComponent implements OnInit {
         this.loaded = true;
       },
       (error) => {
-       
+        this.loaded = true;
       }
     );
   }

@@ -10,23 +10,31 @@ import { StringServiceService } from 'src/app/services/string-service.service';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css'],
 })
-export class ProductComponent implements OnInit{
-  productid:number=0;
-  product!:Product;
-  constructor(private route: ActivatedRoute,private httpproduct:ProductService,private router:Router,private title:Title,private stringservice:StringServiceService) {
+export class ProductComponent implements OnInit {
+  productid: number = 0;
+  product!: Product;
+  constructor(
+    private route: ActivatedRoute,
+    private httpproduct: ProductService,
+    private router: Router,
+    private title: Title,
+    private stringservice: StringServiceService
+  ) {}
+  ngOnInit() {
+    this.productid = this.route.snapshot.params['id'];
 
-   
-  }
-  ngOnInit(){
-      
-  this.productid=this.route.snapshot.params["id"];
-  
-  this.httpproduct.GetProductDetails(this.productid).subscribe(data=>{
-  
-    this.product=data;
-    this.title.setTitle(`Product - ${this.stringservice.getFirstletterUpper(this.product.name)} `);
-  },error=>{
-    this.router.navigate([""]);
-  })
+    this.httpproduct.GetProductDetails(this.productid).subscribe(
+      (data) => {
+        this.product = data;
+        this.title.setTitle(
+          `Product - ${this.stringservice.textFirstletterupper(
+            this.product.name
+          )} `
+        );
+      },
+      () => {
+        this.router.navigate(['/']);
+      }
+    );
   }
 }

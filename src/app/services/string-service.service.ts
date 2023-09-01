@@ -6,8 +6,7 @@ import { Injectable } from '@angular/core';
 export class StringServiceService {
   constructor() {}
 
-  getFirstletterUpper(text: string): string {
-   
+  textFirstletterupper(text: string): string {
     const firstletter = text[0].toUpperCase();
     let restofcontent: string = '';
     if (text[1] != null) {

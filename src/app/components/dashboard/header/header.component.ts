@@ -1,10 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as saveAs from 'file-saver';
 import { CookieService } from 'ngx-cookie-service';
 import { MenuItem, MessageService } from 'primeng/api';
-import { User } from 'src/app/models/User';
-
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -58,8 +56,8 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit(): void {}
   logOut() {
-    this.router.navigate(['/welcome/login']);
     this.cookiesservice.delete('token');
+    this.router.navigate(['/welcome/login']);
   }
 
   GetPurchasesForPdf(): void {
