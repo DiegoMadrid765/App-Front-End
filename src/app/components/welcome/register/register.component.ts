@@ -169,7 +169,6 @@ this.cities=[];
   }
   getCitiesByCodeandName(code: string, name: string) {
     this.httpcountry.getCitiesByCodeandName(code, name).subscribe((data) => {
- 
       this.cities = data;
     });
   }
@@ -179,6 +178,7 @@ this.cities=[];
   
     
       this.cities = data;
+      console.log(this.cities);
     });
   }
 

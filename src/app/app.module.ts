@@ -47,7 +47,10 @@ import { ImageModule } from 'primeng/image';
 import { AccordionModule } from 'primeng/accordion';
 import { ProductComponent } from './components/dashboard/product/product.component';
 import { EditproductComponent } from './components/dashboard/myproducts/editproduct/editproduct.component';
-import { FileSaverModule } from 'ngx-filesaver';
+import { EditUserComponent } from './components/dashboard/edit-user/edit-user.component';
+import { SpeedDialModule } from 'primeng/speeddial';
+import { TooltipModule } from 'primeng/tooltip';
+import { ForgetpasswordComponent } from './components/welcome/forgetpassword/forgetpassword.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +67,9 @@ import { FileSaverModule } from 'ngx-filesaver';
     RegisterProductComponent,
     MyproductsComponent,
     ProductComponent,
-    EditproductComponent
+    EditUserComponent,
+    EditproductComponent,
+    ForgetpasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +81,7 @@ import { FileSaverModule } from 'ngx-filesaver';
     InputTextModule,
     MenubarModule,
     CardModule,
+    
     DividerModule,
     CheckboxModule,
     RadioButtonModule,
@@ -100,6 +106,8 @@ import { FileSaverModule } from 'ngx-filesaver';
     SkeletonModule,
     ImageModule,
     AccordionModule,
+    SpeedDialModule,
+    TooltipModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AddTokenInterceptor, multi: true },

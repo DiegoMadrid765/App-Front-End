@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Variables } from 'src/assets/enviroment';
 import { Login } from '../models/Login';
-import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { CookieService } from 'ngx-cookie-service';
 @Injectable({
   providedIn: 'root',
@@ -28,11 +28,10 @@ export class LoginService {
     return this.http.post(`${this.apiurl}${this.endpoint}`, login);
   }
 
-
   userUtenticated(): boolean {
     try {
       const helper = new JwtHelperService();
-      helper.decodeToken(this.cookiesservice.get("token")!);
+      helper.decodeToken(this.cookiesservice.get('token')!);
       return true;
     } catch (error) {
       return false;

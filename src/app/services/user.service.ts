@@ -36,4 +36,9 @@ export class UserService {
     const requestOptions = { params: params };
     return this.http.put(`${this.apiurl}${this.endpoint}?id=${id}`, requestOptions);
   }
+
+  GetUserdataEdit():Observable<User>{
+    this.endpoint = 'api/User/GetUserdataEdit';
+    return this.http.get<User>(`${this.apiurl}${this.endpoint}`);
+  }
 }

@@ -1,0 +1,22 @@
+/* Estilos para el contenedor del botón de carga de archivos */
+.p-fileupload-buttonbar {
+    text-align: center; /* Centrar el botón */
+    margin-top: 20px; /* Agregar margen superior para separación */
+  }
+  
+  /* Estilos para el botón de carga de archivos */
+  .p-fileupload-choose {
+    background-color: #007bff; /* Cambiar el color de fondo del botón */
+    color: #fff; /* Cambiar el color del texto */
+    border: none; /* Eliminar el borde predeterminado */
+    padding: 10px 20px; /* Ajustar el espaciado interno */
+    cursor: pointer; /* Cambiar el cursor al pasar el ratón */
+    border-radius: 5px; /* Agregar bordes redondeados */
+    font-size: 16px; /* Tamaño de fuente */
+    transition: background-color 0.3s; /* Transición suave al cambiar el color de fondo */
+  }
+  
+  /* Estilos para el botón de carga de archivos al pasar el ratón */
+  .p-fileupload-choose:hover {
+    background-color: #0056b3; /* Cambiar el color de fondo al pasar el ratón */
+  }

@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit {
           {
             label: 'Edit account',
             icon: 'pi pi-user-edit',
+            routerLink: 'edituser',
           },
 
           {
@@ -41,8 +42,8 @@ export class HeaderComponent implements OnInit {
       },
 
       {
-        label: 'Purchases',
-        icon: 'pi pi-fw pi-gift',
+        label: 'Download purchases history',
+        icon: 'pi pi-fw pi-download',
         command: () => {
           this.GetPurchasesForPdf();
         },

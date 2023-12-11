@@ -11,6 +11,8 @@ import { MainComponent } from './components/dashboard/main/main.component';
 import { MyproductsComponent } from './components/dashboard/myproducts/myproducts.component';
 import { ProductComponent } from './components/dashboard/product/product.component';
 import { EditproductComponent } from './components/dashboard/myproducts/editproduct/editproduct.component';
+import { EditUserComponent } from './components/dashboard/edit-user/edit-user.component';
+import { ForgetpasswordComponent } from './components/welcome/forgetpassword/forgetpassword.component';
 
 const routes: Routes = [
   {
@@ -40,6 +42,10 @@ const routes: Routes = [
         path: 'register',
         component: RegisterComponent,
       },
+      {
+        path: 'forgetpassword',
+        component: ForgetpasswordComponent,
+      },
 
       {
         path: '**',
@@ -56,6 +62,10 @@ const routes: Routes = [
       {
         path: '',
         component: MainComponent,
+      },
+      {
+        path: 'edituser',
+        component: EditUserComponent,
       },
       {
         path: 'sell',
@@ -84,12 +94,22 @@ const routes: Routes = [
         path: 'product/:id',
         component: ProductComponent,
       },
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+      },
+      {
+        path: '**',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+      },
     ],
   },
 
   {
     path: '**',
-    redirectTo: '/dashboard',
+    redirectTo: 'dashboard',
     pathMatch: 'full',
   },
 ];

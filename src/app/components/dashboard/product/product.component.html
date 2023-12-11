@@ -5,6 +5,11 @@
         </ng-template>
     </p-image>
     <div class="description">
+        <div class="item">
+            <p-speedDial hideIcon="pi pi-share-alt" showIcon="pi pi-share-alt" [model]="items"  direction="right"></p-speedDial>
+        </div>
+ <br><br><br>
+
         <h2>{{product.name|titlecase}}</h2>
         <p>{{product.description}}</p>
         <p>{{product.price|currency}}</p>

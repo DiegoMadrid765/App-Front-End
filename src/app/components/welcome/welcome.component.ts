@@ -7,7 +7,7 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent {
- 
+ currentYear=new Date().getFullYear();
  constructor(private httlogin:LoginService) {
  
   

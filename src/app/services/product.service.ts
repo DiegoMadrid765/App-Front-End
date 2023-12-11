@@ -77,4 +77,9 @@ export class ProductService {
       responseType: 'arraybuffer',
     });
   }
+
+  DownloadPurchaseQr(url:string):Observable<Blob>{
+    this.endpoint = 'api/product/DownloadPurchaseQr';
+    return this.http.get(`${this.apiurl}${this.endpoint}?url=${url}`, { responseType: 'blob' });
+  }
 }

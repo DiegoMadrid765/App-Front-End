@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
-  CanActivateFn,
   Router,
   RouterStateSnapshot,
   UrlTree,
@@ -29,8 +28,6 @@ export class AuthGUard implements CanActivate {
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
     if (!this.cookiesservice.get("token")) {
-      
-   
       this.router.navigate(['/welcome/login']);
     }else if(!this.httplogin.userUtenticated()){
       this.cookiesservice.delete('token');
