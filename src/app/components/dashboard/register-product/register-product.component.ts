@@ -54,6 +54,7 @@ export class RegisterProductComponent {
       image: this.image,
       stock: this.formRegister.value.stock,
       hidden: 0,
+      
     };
     this.httpproduct.registerprodcut(product).subscribe(
       (data) => {

@@ -57,8 +57,8 @@ export class ProductService {
     return this.http.get(`${this.apiurl}${this.endpoint}`);
   }
 
-  GetProductDetails(id: number): Observable<Product> {
-    this.endpoint = `api/product/GetProductDetails?id=${id}`;
+  GetProductDetails(url: string): Observable<Product> {
+    this.endpoint = `api/product/GetProductDetails?url=${url}`;
 
     return this.http.get<Product>(`${this.apiurl}${this.endpoint}`);
   }

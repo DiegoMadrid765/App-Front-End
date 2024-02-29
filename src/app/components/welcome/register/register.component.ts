@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   AbstractControlOptions,
   FormBuilder,
@@ -26,12 +26,13 @@ import { UserService } from 'src/app/services/user.service';
 export class RegisterComponent implements OnInit {
   formRegister: FormGroup;
   minDate: Date = new Date();
+  @Input() dato: string = "";
   emailtaken = false;
   loading = false;
   countries: Country[] = [];
   cities: City[] = [];
   selectedCountry!: Country;
-  citiesloaded:boolean=false;
+  citiesloaded: boolean = false;
   selectedCity: City = {
     name: '',
     Id: 0,
@@ -66,7 +67,7 @@ export class RegisterComponent implements OnInit {
         gender: [this.genders[0].value, Validators.required],
         email: ['', [Validators.required, Validators.email]],
         country: ['', Validators.required],
-        city: ['', Validators.required],
+
         homeaddress: ['', Validators.required],
       },
       {
@@ -99,14 +100,14 @@ export class RegisterComponent implements OnInit {
           this.emailtaken = true;
         }
       },
-      (error) => {
+      () => {
         this.emailtaken = true;
       }
     );
   }
-  VerForumulario(){
+  VerForumulario() {
     console.log(this.formRegister);
-    
+
   }
   registerUser() {
     if (this.formRegister.valid && !this.emailtaken) {
@@ -127,7 +128,7 @@ export class RegisterComponent implements OnInit {
       };
 
       this.httpUser.registerUser(user).subscribe(
-        (data) => {
+        () => {
           this.showMessage(
             'User registered succesfully',
             `the user ${user.names.toUpperCase()} ${user.lastnames.toUpperCase()} has been registered succesfully, now check your email to activate your account`,
@@ -140,9 +141,9 @@ export class RegisterComponent implements OnInit {
           }, 10000);
         },
         (error) => {
-     
-          this.loading=false;
-        this.showMessage(error.error.title,error.error.description,error.error.type);
+
+          this.loading = false;
+          this.showMessage(error.error.title, error.error.description, error.error.type);
         }
       );
     }
@@ -161,10 +162,10 @@ export class RegisterComponent implements OnInit {
     });
   }
   changeCountrySelected() {
-    
+
     this.selectedCountry = this.formRegister.value.country;
-console.log(this.selectedCountry);
-this.cities=[];
+    console.log(this.selectedCountry);
+    this.cities = [];
     this.getCitiesByCode(this.selectedCountry.code);
   }
   getCitiesByCodeandName(code: string, name: string) {
@@ -175,8 +176,8 @@ this.cities=[];
 
   getCitiesByCode(code: string) {
     this.httpcountry.getCitiesByCode(code).subscribe((data) => {
-  
-    
+
+
       this.cities = data;
       console.log(this.cities);
     });

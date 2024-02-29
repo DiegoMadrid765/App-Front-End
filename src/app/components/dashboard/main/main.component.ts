@@ -40,6 +40,8 @@ export class MainComponent implements OnInit {
     this.httpproduct.getProducts().subscribe(
       (data) => {
         this.products = data;
+        console.log(this.products);
+        
         this.loaded = true;
       },
       (error) => {
@@ -86,7 +88,7 @@ export class MainComponent implements OnInit {
     });
   }
 
-  GoProduct(id: number) {
-    this.router.navigate(['dashboard/product', id]);
+  GoProduct(url: string) {    
+    this.router.navigate(['dashboard/product', url]);
   }
 }

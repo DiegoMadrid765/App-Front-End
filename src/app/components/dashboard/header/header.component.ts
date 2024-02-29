@@ -65,10 +65,10 @@ export class HeaderComponent implements OnInit {
     const cuerrentDate: Date = new Date();
     this.httpproduct.DownloadPDFPurchases().subscribe(
       (data: any) => {
-        console.log(data);
+      
 
         const blob = new Blob([data], { type: 'application/pdf' });
-        console.log(data);
+  
 
         saveAs(
           blob,

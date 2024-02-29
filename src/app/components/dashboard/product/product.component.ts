@@ -13,7 +13,7 @@ import { saveAs } from 'file-saver';
   styleUrls: ['./product.component.css'],
 })
 export class ProductComponent implements OnInit {
-  productid: number = 0;
+  producturl: string ="";
   product!: Product;
   items!: MenuItem[];
   imageDonlaed: any;
@@ -26,9 +26,10 @@ export class ProductComponent implements OnInit {
     private stringservice: StringServiceService
   ) {}
   ngOnInit() {
-    this.productid = this.route.snapshot.params['id'];
+    this.producturl = this.route.snapshot.params['id'];
 
-    this.httpproduct.GetProductDetails(this.productid).subscribe(
+
+    this.httpproduct.GetProductDetails(this.producturl).subscribe(
       (data) => {
         this.product = data;
         this.title.setTitle(

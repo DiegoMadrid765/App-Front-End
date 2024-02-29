@@ -39,6 +39,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.primengConfig.ripple = true;
     this.title.setTitle('Login');
+    this.httplogin.trmconsultar().subscribe(data=>{
+      console.log(data);
+      
+    })
   }
 
   LoginIn() {
@@ -119,4 +123,6 @@ export class LoginComponent implements OnInit {
       reject: () => {},
     });
   }
+
+  
 }

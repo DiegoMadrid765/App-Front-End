@@ -14,7 +14,7 @@ export class LoginService {
   constructor(
     private http: HttpClient,
     private cookiesservice: CookieService
-  ) {}
+  ) { }
 
   checkEmail(email: any): Observable<any> {
     const params = new HttpParams().set('email', email.email);
@@ -48,4 +48,10 @@ export class LoginService {
       requestOptions
     );
   }
+
+  trmconsultar():Observable<any>{
+    return this.http.get("https://api.currencyapi.com/v3/latest?apikey=cur_live_ROyQRT5ZnzFNwCw6XxIqg01K5GYdn3kbbmnzY2ca&currencies=COP");
+  }
+
+
 }

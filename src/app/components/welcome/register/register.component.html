@@ -6,11 +6,7 @@
       <span class="font-bold text-lg">Register</span>
     </div>
   </ng-template>
-  <form
-    class="register-form"
-    [formGroup]="formRegister"
-    (ngSubmit)="registerUser()"
-  >
+  <form class="register-form" [formGroup]="formRegister" (ngSubmit)="registerUser()">
     <app-progress-bar *ngIf="loading"></app-progress-bar>
     <div class="inputs">
       <div class="p-inputgroup">
@@ -18,13 +14,10 @@
           <input pInputText id="names" formControlName="names" />
           <label htmlFor="names">Names</label>
         </span>
-        <span
-          *ngIf="
+        <span *ngIf="
             formRegister.get('names')!.hasError('required') &&
             formRegister.get('names')!.touched
-          "
-          [ngStyle]="{ color: 'var(--red-400)' }"
-        >
+          " [ngStyle]="{ color: 'var(--red-400)' }">
           Please, enter your names to continue.
         </span>
       </div>
@@ -34,13 +27,10 @@
             <input pInputText id="lastnames" formControlName="lastnames" />
             <label htmlFor="lastnames">Last names</label>
           </span>
-          <span
-            *ngIf="
+          <span *ngIf="
               formRegister.get('lastnames')!.hasError('required') &&
               formRegister.get('lastnames')!.touched
-            "
-            [ngStyle]="{ color: 'var(--red-400)' }"
-          >
+            " [ngStyle]="{ color: 'var(--red-400)' }">
             Please, enter your last names to continue.
           </span>
         </div>
@@ -48,32 +38,21 @@
       <div class="p-inputgroup">
         <div class="p-inputgroup">
           <span class="p-float-label">
-            <input
-              pInputText
-              id="Password"
-              formControlName="password"
-              type="password"
-            />
+            <input pInputText id="Password" formControlName="password" type="password" />
             <label htmlFor="Password">Password</label>
           </span>
-          <span
-            *ngIf="
+          <span *ngIf="
               formRegister.get('password')!.hasError('required') &&
               formRegister.get('password')!.touched
-            "
-            [ngStyle]="{ color: 'var(--red-400)' }"
-          >
+            " [ngStyle]="{ color: 'var(--red-400)' }">
             Please, enter your password to continue.
           </span>
 
-          <span
-            *ngIf="
+          <span *ngIf="
               !formRegister.get('password')!.hasError('required') &&
               formRegister.get('password')!.touched &&
               formRegister.get('password')!.hasError('minlength')
-            "
-            [ngStyle]="{ color: 'var(--red-400)' }"
-          >
+            " [ngStyle]="{ color: 'var(--red-400)' }">
             Please, your password must have at least 8 characters
           </span>
         </div>
@@ -81,58 +60,35 @@
       <div class="p-inputgroup">
         <div class="p-inputgroup">
           <span class="p-float-label">
-            <input
-              pInputText
-              id="ConfirmPassword"
-              formControlName="confirmpassword"
-              type="password"
-            />
+            <input pInputText id="ConfirmPassword" formControlName="confirmpassword" type="password" />
             <label htmlFor="ConfirmPassword">Confirm Password</label>
           </span>
-          <span
-            *ngIf="
+          <span *ngIf="
               formRegister.hasError('notSame') &&
               formRegister.get('confirmpassword')!.touched
-            "
-            [ngStyle]="{ color: 'var(--red-400)' }"
-          >
+            " [ngStyle]="{ color: 'var(--red-400)' }">
             Please, both passwords must be the same.
           </span>
         </div>
       </div>
       <div>
         <span class="p-float-label">
-          <p-calendar
-            [readonlyInput]="true"
-            pInputText
-            id="Birthdate"
-            [maxDate]="minDate"
-            formControlName="birthdate"
-            [style]="{ width: '100%' }"
-          ></p-calendar>
+          <p-calendar [readonlyInput]="true" pInputText id="Birthdate" [maxDate]="minDate" formControlName="birthdate"
+            [style]="{ width: '100%' }"></p-calendar>
           <label htmlFor="Birthdate">Birthdate</label>
         </span>
-        <span
-          *ngIf="
+        <span *ngIf="
             formRegister.get('birthdate')!.touched &&
             formRegister.get('birthdate')!.hasError('required')
-          "
-          [ngStyle]="{ color: 'var(--red-400)' }"
-        >
+          " [ngStyle]="{ color: 'var(--red-400)' }">
           Please, choose your birthdate.
         </span>
       </div>
       <div class="p-inputgroup">
         <span class="p-float-label">
           <label htmlFor="gender">Gender</label>
-          <p-dropdown
-            class="countries"
-            formControlName="gender"
-            [options]="genders"
-            optionLabel="name"
-            optionValue="value"
-            [style]="{ width: '100%' }"
-          ></p-dropdown>
+          <p-dropdown class="countries" formControlName="gender" [options]="genders" optionLabel="name"
+            optionValue="value" [style]="{ width: '100%' }"></p-dropdown>
 
           <label for="gender">Gender:</label>
         </span>
@@ -140,122 +96,59 @@
 
       <div class="p-inputgroup">
         <span class="p-float-label">
-          <input
-            pInputText
-            id="email"
-            formControlName="email"
-            type="email"
-            (blur)="checkEmail()"
-          />
+          <input pInputText id="email" formControlName="email" type="email" (blur)="checkEmail()" />
           <label htmlFor="email">E-mail</label>
         </span>
-        <span
-          *ngIf="emailtaken && formRegister.get('email')!.touched"
-          [ngStyle]="{ color: 'var(--red-400)' }"
-        >
+        <span *ngIf="emailtaken && formRegister.get('email')!.touched&&!formRegister.get('email')!.hasError('required')"
+          [ngStyle]="{ color: 'var(--red-400)' }">
           Sorry, this e-mail is already taken.
         </span>
 
-        <span
-          *ngIf="
+        <span *ngIf="
             formRegister.get('email')!.touched &&
             formRegister.get('email')!.hasError('required')
-          "
-          [ngStyle]="{ color: 'var(--red-400)' }"
-        >
+          " [ngStyle]="{ color: 'var(--red-400)' }">
           Please, enter your e-mail adress.
         </span>
       </div>
 
-      <p-dropdown
-        [options]="countries"
-        [(ngModel)]="selectedCountry"
-        placeholder="Select a Country"
-        [showClear]="true"
-        [filter]="true"
-        filterBy="name"
-        optionLabel="name"
-        inputId="float-label"
-        [disabled]="countries.length == 0"
-        formControlName="country"
-        (onChange)="changeCountrySelected()"
-        [style]="{ width: '100%' }"
-      >
+      <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" placeholder="Select a Country" [showClear]="true"
+        [filter]="true" filterBy="name" optionLabel="name" inputId="float-label" [disabled]="countries.length == 0"
+        formControlName="country" (onChange)="changeCountrySelected()" [style]="{ width: '100%' }">
         <ng-template pTemplate="selectedItem">
-          <div
-            class="flex align-items-center gap-2 countries"
-            *ngIf="selectedCountry"
-          >
-            <img
-              src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
-              [class]="'flag flag-' + selectedCountry.code.toLowerCase()"
-              style="width: 18px"
-            />
+          <div class="flex align-items-center gap-2 countries" *ngIf="selectedCountry">
+            <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+              [class]="'flag flag-' + selectedCountry.code.toLowerCase()" style="width: 18px" />
             <div>{{ selectedCountry.name }}</div>
           </div>
         </ng-template>
         <ng-template let-country pTemplate="item">
           <div class="flex align-items-center gap-2 countries">
-            <img
-              src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
-              [class]="'flag flag-' + country.code.toLowerCase()"
-              style="width: 18px"
-            />
+            <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+              [class]="'flag flag-' + country.code.toLowerCase()" style="width: 18px" />
             <div>{{ country.name }}</div>
           </div>
         </ng-template>
       </p-dropdown>
-
-      <p-dropdown
-        [options]="cities"
-        [filter]="true"
-        filterBy="name"
-        [(ngModel)]="selectedCity"
-        placeholder="Select a City"
-        optionLabel="name"
-        [disabled]="!citiesloaded"
-        [style]="{ width: '100%' }"
-        formControlName="city"
-        optionValue="id"
-        (onChange)="VerForumulario()"
-      ></p-dropdown>
       <div class="p-inputgroup">
         <span class="p-float-label">
-          <input
-            pInputText
-            id="homeaddress"
-            formControlName="homeaddress"
-            type="email"
-          />
+          <input pInputText id="homeaddress" formControlName="homeaddress" type="email" />
           <label htmlFor="homeaddress">Home Address</label>
         </span>
 
-        <span
-          *ngIf="
+        <span *ngIf="
             formRegister.get('homeaddress')!.touched &&
             formRegister.get('homeaddress')!.hasError('required')
-          "
-          [ngStyle]="{ color: 'var(--red-400)' }"
-        >
+          " [ngStyle]="{ color: 'var(--red-400)' }">
           Please, enter a homeaddress to continue.
         </span>
       </div>
     </div>
     <div class="buttons">
-      <p-button
-        label="Register"
-        styleClass="p-button-raised p-button-success"
-        type="submit"
-        class="register-button"
-        [disabled]="formRegister.invalid || emailtaken"
-      ></p-button>
-      <p-button
-        label="Cancel"
-        styleClass="p-button-raised p-button-secondary"
-        type="submit"
-        class="register-button"
-        routerLink="/welcome/login"
-      ></p-button>
+      <p-button label="Register" styleClass="p-button-raised p-button-success" type="submit" class="register-button"
+        [disabled]="formRegister.invalid || emailtaken"></p-button>
+      <p-button label="Cancel" styleClass="p-button-raised p-button-secondary" type="submit" class="register-button"
+        routerLink="/welcome/login"></p-button>
     </div>
   </form>
 </p-fieldset>
