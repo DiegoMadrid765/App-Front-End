@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
   loading = false;
   countries: Country[] = [];
   cities: City[] = [];
-  selectedCountry!: Country;
+  selectedCountry!: any;
   citiesloaded: boolean = false;
   selectedCity: City = {
     name: '',
@@ -159,6 +159,8 @@ export class RegisterComponent implements OnInit {
   getCountries() {
     this.httpcountry.getCountries().subscribe((data) => {
       this.countries = data;
+      console.log(data);
+      
     });
   }
   changeCountrySelected() {

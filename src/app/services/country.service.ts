@@ -16,9 +16,9 @@ export class CountryService {
 
    }
 
-   getCountries():Observable<Country[]>{
-this.endpoint="api/Country/getCountries";
-return this.http.get<Country[]>(`${this.apiurl}${this.endpoint}`);
+   getCountries():Observable<any[]>{
+this.endpoint="https://restcountries.com/v3.1/all";
+return this.http.get<any[]>(`${this.endpoint}`);
    }
    getCitiesByCodeandName(code:string,name:string):Observable<City[]>{
     this.endpoint=`api/Country/getCitiesByCodeAndName?code=${code}&name=${name}`;

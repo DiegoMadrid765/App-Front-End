@@ -27,9 +27,9 @@ export class AuthGUard implements CanActivate {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
-    if (!this.cookiesservice.get("token")) {
+    if (!this.cookiesservice.get('token')) {
       this.router.navigate(['/welcome/login']);
-    }else if(!this.httplogin.userUtenticated()){
+    } else if (!this.httplogin.userUtenticated()) {
       this.cookiesservice.delete('token');
       this.router.navigate(['/welcome/login']);
     }
