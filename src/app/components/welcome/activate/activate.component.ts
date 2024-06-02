@@ -10,21 +10,29 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ActivateComponent implements OnInit {
   url: string = '';
-
+  showActivatedMesage:boolean=false;
+  wrongurl:boolean=false;
+  erroLink:boolean=false;
   constructor(
     private route: ActivatedRoute,
     private httpuser: UserService,
     private router: Router,
     private confirmationService: ConfirmationService
-  ) {}
+  ) {
+
+    
+  }
   ngOnInit(): void {
     this.url = this.route.snapshot.params['url'];
 
     this.httpuser.GetActivatedUser(this.url).subscribe((data) => {
       if (data == null) {
-        this.router.navigate(['/']);
+        //this.router.navigate(['/']);
+        this.showActivatedMesage=true;
+        this.wrongurl=true;
       } else {
        
+        this.showActivatedMesage=true;
         
         const id = data.id;
         

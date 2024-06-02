@@ -6,7 +6,8 @@ import { Product } from 'src/app/models/Product';
 import { User } from 'src/app/models/User';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
-
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { HeaderComponent } from '../header/header.component';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -22,7 +23,9 @@ export class MainComponent implements OnInit {
     private httpproduct: ProductService,
     private messageService: MessageService,
     private router: Router,
-    private title: Title
+    private title: Title,
+    private dialogService: DialogService
+    
   ) {
     title.setTitle('Main');
   }
@@ -90,5 +93,13 @@ export class MainComponent implements OnInit {
 
   GoProduct(url: string) {    
     this.router.navigate(['dashboard/product', url]);
+  }
+
+  openModal(){
+    this.dialogService.open(HeaderComponent,{
+      header:"open",
+      dismissableMask:false,
+      
+    })
   }
 }

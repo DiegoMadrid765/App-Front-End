@@ -100,9 +100,7 @@ select {
 [type=button],
 [type=reset],
 [type=submit],
-button {
-    -webkit-appearance: button
-}
+
 
 [type=button]::-moz-focus-inner,
 [type=reset]::-moz-focus-inner,
@@ -151,10 +149,7 @@ textarea {
     height: auto
 }
 
-[type=search] {
-    -webkit-appearance: textfield;
-    outline-offset: -2px
-}
+
 
 [type=search]::-webkit-search-decoration {
     -webkit-appearance: none
@@ -192,7 +187,7 @@ template {
 }
 
 .pi {
-    speak: none;
+   
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     display: inline-block;
@@ -1289,4 +1284,8 @@ template {
     width: 95%;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.pointer{
+    cursor: pointer;
 }

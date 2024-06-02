@@ -8,8 +8,10 @@ import {
   MessageService,
   PrimeNGConfig,
 } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
 import { Login } from 'src/app/models/Login';
 import { LoginService } from 'src/app/services/login.service';
+import { ForgetPasswordComponent } from '../forget-password/forget-password.component';
 
 @Component({
   selector: 'app-login',
@@ -23,8 +25,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private primengConfig: PrimeNGConfig,
     private title: Title,
+    private dialogService: DialogService,
     private httplogin: LoginService,
-    fb: FormBuilder,
+    private fb: FormBuilder,
     private messageService: MessageService,
     private router: Router,
     private confirmationService: ConfirmationService,
@@ -39,10 +42,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.primengConfig.ripple = true;
     this.title.setTitle('Login');
-    this.httplogin.trmconsultar().subscribe(data=>{
-      console.log(data);
-      
-    })
+
   }
 
   LoginIn() {
@@ -54,11 +54,11 @@ export class LoginComponent implements OnInit {
       );
       this.httplogin.login(login).subscribe(
         (data) => {
-          console.log(data);
+
 
           const expirationDate = new Date();
           expirationDate.setDate(expirationDate.getFullYear() + 1);
-       
+
           this.cookieservice.set('token', data.token, expirationDate);
 
           this.FormLogin.reset();
@@ -120,9 +120,15 @@ export class LoginComponent implements OnInit {
             }
           );
       },
-      reject: () => {},
     });
   }
 
-  
+  showRestePasswordModal() {
+    this.dialogService.open(ForgetPasswordComponent, {
+      header: "Reset your password",
+      width:"45%",
+     
+
+      })
+  }
 }

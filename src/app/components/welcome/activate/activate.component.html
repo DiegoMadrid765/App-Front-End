@@ -1,13 +1,29 @@
-<div class="card flex justify-content-center">
+<div class="card flex justify-content-center" *ngIf="showActivatedMesage&&!wrongurl">
+    <div class="card-message-successfull">
+        <div class="header">
 
-    <p-confirmDialog #cd [style]="{width: '50vw'}">
-        <ng-template pTemplate="header">
-            <h3>Account activated</h3>
-        </ng-template>
-        <ng-template pTemplate="footer">
+            <i class="pi pi-check-circle" style="color: rgb(255, 255, 255)"></i>
+            <p>Account activated</p>
+        </div>
+        <div class="body">
+            <p>Congratulations, your account has been successfully activated.</p>
+            <button routerLink="/" pButton pRipple label="Continue" class="p-button-success"></button>
+        </div>
+    </div>
 
-            <button type="button" pButton icon="pi pi-check" label="Ok" (click)="cd.accept()"></button>
-        </ng-template>
-    </p-confirmDialog>
+</div>
+
+<div class="card flex justify-content-center" *ngIf="showActivatedMesage&&wrongurl">
+    <div class="card-message-error">
+        <div class="header">
+
+            <i class="pi pi-times-circle" style="color: rgb(255, 255, 255)"></i>
+            <p>Error</p>
+        </div>
+        <div class="body">
+            <p>It has happened an error activating your account.</p>
+            <button routerLink="/" pButton pRipple label="Continue" class="p-button-danger"></button>
+        </div>
+    </div>
 
 </div>

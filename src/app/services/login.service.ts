@@ -44,14 +44,15 @@ export class LoginService {
     const params = new HttpParams().set('email', email);
     const requestOptions = { params: params };
     return this.http.post(
-      `${this.apiurl}${this.endpoint}?email=${email}`,
-      requestOptions
+      `${this.apiurl}${this.endpoint}`,
+      {params}
     );
   }
-
-  trmconsultar():Observable<any>{
-    return this.http.get("https://api.currencyapi.com/v3/latest?apikey=cur_live_ROyQRT5ZnzFNwCw6XxIqg01K5GYdn3kbbmnzY2ca&currencies=COP");
-  }
+SendEmailForgetPassword(email:string):Observable<any>{
+  this.endpoint="api/Login/sendemailresetpassword"
+  const params=new HttpParams().set("email",email)
+return this.http.get(`${this.apiurl}${this.endpoint}`,{params})
+}
 
 
 }

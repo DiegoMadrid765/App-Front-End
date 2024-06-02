@@ -50,7 +50,10 @@ import { EditproductComponent } from './components/dashboard/myproducts/editprod
 import { EditUserComponent } from './components/dashboard/edit-user/edit-user.component';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { TooltipModule } from 'primeng/tooltip';
-import { ForgetpasswordComponent } from './components/welcome/forgetpassword/forgetpassword.component';
+
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { ForgetPasswordComponent } from './components/welcome/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './components/welcome/reset-password/reset-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +72,9 @@ import { ForgetpasswordComponent } from './components/welcome/forgetpassword/for
     ProductComponent,
     EditUserComponent,
     EditproductComponent,
-    ForgetpasswordComponent
+
+    ForgetPasswordComponent,
+      ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +86,7 @@ import { ForgetpasswordComponent } from './components/welcome/forgetpassword/for
     InputTextModule,
     MenubarModule,
     CardModule,
-    
+    DynamicDialogModule,
     DividerModule,
     CheckboxModule,
     RadioButtonModule,
@@ -111,6 +116,7 @@ import { ForgetpasswordComponent } from './components/welcome/forgetpassword/for
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AddTokenInterceptor, multi: true },
+    DialogService,
     ConfirmationService,
     MessageService,
     DataViewLayoutOptions,
