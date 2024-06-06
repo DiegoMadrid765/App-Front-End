@@ -36,12 +36,7 @@
         Please, enter a correct E-mail
       </span>
       <div class="p-inputgroup">
-        <input
-          pInputText
-          placeholder="Password"
-          type="password"
-          formControlName="password"
-        />
+        <p-password formControlName="password" placeholder="Password" [feedback]="false" [style]="{'width':'100%'}" [toggleMask]="true"></p-password>
       </div>
       <span
         *ngIf="

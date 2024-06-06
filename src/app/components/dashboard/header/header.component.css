@@ -11,3 +11,10 @@
     justify-content: center;
     gap: 10px;
 }
+.shoping-car{
+   font-size: 30px;
+   cursor: pointer;
+}
+.right-position{
+    margin-right: 50px;
+}

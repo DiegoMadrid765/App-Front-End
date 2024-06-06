@@ -48,12 +48,7 @@
       <div class="p-inputgroup">
         <div class="p-inputgroup">
           <span class="p-float-label">
-            <input
-              pInputText
-              id="Password"
-              formControlName="password"
-              type="password"
-            />
+            <p-password formControlName="password" [feedback]="false" id="password" [style]="{'width':'100%'}" [toggleMask]="true"></p-password>
             <label htmlFor="Password">Password</label>
           </span>
           <span
@@ -81,12 +76,8 @@
       <div class="p-inputgroup">
         <div class="p-inputgroup">
           <span class="p-float-label">
-            <input
-              pInputText
-              id="ConfirmPassword"
-              formControlName="confirmpassword"
-              type="password"
-            />
+            <p-password formControlName="confirmpassword" id="confirmpassword" [feedback]="false" id="password" [style]="{'width':'100%'}" [toggleMask]="true"></p-password>
+
             <label htmlFor="ConfirmPassword">Confirm Password</label>
           </span>
           <span

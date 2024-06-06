@@ -12,32 +12,38 @@
 
             <div class="p-inputgroup">
                 <span class="p-float-label">
-            <input pInputText id="name" formControlName="name"/>
-            <label htmlFor="name">Product Name</label>
-            
+                    <input pInputText id="name" formControlName="name" />
+                    <label htmlFor="name">Product Name</label>
+
                 </span>
-                <span *ngIf="formRegister.get('name')!.hasError('required')&&formRegister.get('name')!.touched" [ngStyle]="{color: 'var(--red-400)'}">
+                <span *ngIf="formRegister.get('name')!.hasError('required')&&formRegister.get('name')!.touched"
+                    [ngStyle]="{color: 'var(--red-400)'}">
                     Please, enter the product name to continue.
                 </span>
             </div>
             <div class="p-inputgroup">
                 <span class="p-float-label">
-                    <p-inputNumber formControlName="price" id="price" inputId="currency-us" mode="currency" currency="USD" locale="en-US" formControlName="price"> </p-inputNumber>
-            <label htmlFor="name">Product Price</label>
-            
+                    <p-inputNumber formControlName="price" id="price" inputId="currency-us" mode="currency"
+                        currency="USD" locale="en-US" formControlName="price"> </p-inputNumber>
+                    <label htmlFor="name">Product Price</label>
+
                 </span>
-                <span *ngIf="formRegister.get('price')!.hasError('required')&&formRegister.get('price')!.touched" [ngStyle]="{color: 'var(--red-400)'}">
+                <span *ngIf="formRegister.get('price')!.hasError('required')&&formRegister.get('price')!.touched"
+                    [ngStyle]="{color: 'var(--red-400)'}">
                     Please, enter the product price to continue.
                 </span>
             </div>
             <div class="p-inputgroup">
                 <span class="p-float-label">
-                    <textarea rows="5" cols="30" id="description" pInputTextarea [autoResize]="true" formControlName="description"></textarea>
+                    <textarea rows="5" cols="30" id="description" pInputTextarea [autoResize]="true"
+                        formControlName="description"></textarea>
 
-            <label htmlFor="description">Product Description</label>
-            
+                    <label htmlFor="description">Product Description</label>
+
                 </span>
-                <span *ngIf="formRegister.get('description')!.hasError('required')&&formRegister.get('description')!.touched" [ngStyle]="{color: 'var(--red-400)'}">
+                <span
+                    *ngIf="formRegister.get('description')!.hasError('required')&&formRegister.get('description')!.touched"
+                    [ngStyle]="{color: 'var(--red-400)'}">
                     Please, enter the prodcut description to continue.
                 </span>
             </div>
@@ -46,19 +52,37 @@
 
 
                     <div class="file-select" id="src-file1">
-                        <input type="file" name="src-file1" aria-label="Choose image" accept="image/*" (change)="getImage($event)">
+                        <input type="file" name="src-file1" aria-label="Choose image" accept="image/*"
+                            (change)="getImage($event)">
                     </div>
                 </div>
+                <div class="card" *ngIf="imagesShow.length!=0">
+                    <p-galleria [value]="imagesShow"
+                    [responsiveOptions]="responsiveOptions"
+                    [containerStyle]="{ 'max-width': '640px' }" [numVisible]="5">
+          <ng-template pTemplate="item" let-item>
+            <img [src]="item" style="width: 100%;" />
+          </ng-template>
+          <ng-template pTemplate="thumbnail" let-item>
+            <div class="grid grid-nogutter justify-content-center">
+              <img [src]="item" />
+            </div>
+          </ng-template>
+        </p-galleria>
+        
 
+                      
+                </div>
             </div>
 
             <div class="p-inputgroup">
                 <div class="card flex justify-content-center">
 
 
-                  
-                        <p-dropdown formControlName="stock" optionValue="name" [options]="stocks" optionLabel="name" [style]="{'width': '100%'}"></p-dropdown>
-                   
+
+                    <p-dropdown formControlName="stock" optionValue="name" [options]="stocks" optionLabel="name"
+                        [style]="{'width': '100%'}"></p-dropdown>
+
 
                 </div>
 
@@ -66,8 +90,10 @@
 
         </div>
         <div class="buttons">
-            <p-button label="Sell" styleClass="p-button-raised p-button-success" type="submit" class="register-button" [disabled]="formRegister.invalid"></p-button>
-            <p-button label="Cancel" styleClass="p-button-raised p-button-secondary" type="submit" class="register-button" routerLink="/dashborad"></p-button>
+            <p-button label="Sell" styleClass="p-button-raised p-button-success" type="submit" class="register-button"
+                [disabled]="formRegister.invalid"></p-button>
+            <p-button label="Cancel" styleClass="p-button-raised p-button-secondary" type="submit"
+                class="register-button" routerLink="/dashborad"></p-button>
         </div>
     </form>
 </p-fieldset>

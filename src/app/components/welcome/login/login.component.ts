@@ -126,9 +126,7 @@ export class LoginComponent implements OnInit {
   showRestePasswordModal() {
     this.dialogService.open(ForgetPasswordComponent, {
       header: "Reset your password",
-      width:"45%",
-     
-
+      width:"45%"
       })
   }
 }

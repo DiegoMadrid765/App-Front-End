@@ -20,7 +20,8 @@ export class RegisterProductComponent {
     { name: 'OUTOFSTOCK' },
   ];
   image!: File;
-  images: File[] = [];
+  imagesShow: string[] = [];
+  responsiveOptions: any[] | undefined;
   constructor(
     private fb: FormBuilder,
     private httpproduct: ProductService,
@@ -36,11 +37,34 @@ export class RegisterProductComponent {
       stock: ['INSTOCK', Validators.required],
     });
   }
-  getImage(event: any) {
-    this.image = event.target.files[0];
-   
 
-    this.images.push(this.image);
+  ngOnInit(): void {
+    this.responsiveOptions = [
+      {
+          breakpoint: '1024px',
+          numVisible: 5
+      },
+      {
+          breakpoint: '768px',
+          numVisible: 3
+      },
+      {
+          breakpoint: '560px',
+          numVisible: 1
+      }
+  ];
+  }
+  getImage(event: any) {
+   const file= event.target.files[0];
+    const reader = new FileReader();
+    reader.onload=(e:any)=>{
+      //this.image=e.target.result;
+      this.imagesShow.push(e.target.result);
+    
+      
+    }
+reader.readAsDataURL(file);
+  
   
   }
   RegisterProduct() {
@@ -92,4 +116,5 @@ export class RegisterProductComponent {
       detail: description,
     });
   }
+
 }

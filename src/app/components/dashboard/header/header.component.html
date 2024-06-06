@@ -5,11 +5,16 @@
     </ng-template>
     <ng-template pTemplate="end">
 
-        <div class="card flex justify-content-center">
-
-            <p-button label="Notifications" icon="pi pi-bell" styleClass="p-button-warning" badge="8" badgeClass="p-badge-danger"></p-button>
-            <p-button label="Messages" icon="pi pi-comments" styleClass="p-button-warning" badge="8" badgeClass="p-badge-danger"></p-button>
+        <div class="card flex justify-content-center right-position">
+            <i class="pi 
+            pi-shopping-cart shoping-car" value="2" severity="warning" pBadge (click)="op.toggle($event)"></i>
         </div>
     </ng-template>
     
 </p-menubar>
+
+<p-overlayPanel #op>
+    <ng-template pTemplate="content">
+        <h4>Custom Content</h4>
+    </ng-template>
+</p-overlayPanel>

@@ -7,18 +7,21 @@
                 <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
                     <img class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round" [src]="product.imageurl" height="160" [alt]="product.name" />
                     <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
-                        <div class="flex flex-column align-items-center sm:align-items-start gap-3">
+                        <div class="flex flex-column align-items-center sm:align-items-start gap-2" [style]="{'width':'84%'}">
                             <div class="text-2xl font-bold text-900">{{ product.name|titlecase }}</div>
 
-                            <div class="flex align-items-center gap-3">
+                            <div class="flex align-items-center gap-3 product-description" >
 
                                 <p-tag [value]="product.stock" [severity]="getSeverity(product.stock)!"></p-tag>
+                                
                             </div>
+                          
+                                <p>{{product.description.length>205?product.description.slice(0,350)+"...":product.description }}</p>
                         </div>
                         <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
                             <span class="text-2xl font-semibold">{{product.price|currency }}</span>
-                            <button  pButton (click)="GoProduct(product.url)" label="See details" class="md:align-self-end mb-2 p-button-rounded" [disabled]="product.stock === 'OUTOFSTOCK'"></button>
-                            <button (click)="buyProduct(product.id)" pButton icon="pi pi-shopping-cart" label="Buy" class="md:align-self-end mb-2 p-button-rounded" [disabled]="product.stock === 'OUTOFSTOCK'"></button>
+                            <button  pButton  label="Add to car" class="md:align-self-end mb-2 p-button-rounded" [disabled]="product.stock === 'OUTOFSTOCK'"></button>
+                            <button (click)="GoProduct(product.url)" pButton icon="pi pi-shopping-cart" label="Buy" class="md:align-self-end mb-2 p-button-rounded" [disabled]="product.stock === 'OUTOFSTOCK'"></button>
                         </div>
                     </div>
                 </div>

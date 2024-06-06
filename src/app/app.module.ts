@@ -50,10 +50,11 @@ import { EditproductComponent } from './components/dashboard/myproducts/editprod
 import { EditUserComponent } from './components/dashboard/edit-user/edit-user.component';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { TooltipModule } from 'primeng/tooltip';
-
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ForgetPasswordComponent } from './components/welcome/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './components/welcome/reset-password/reset-password.component';
+import { GalleriaModule } from 'primeng/galleria';
 @NgModule({
   declarations: [
     AppComponent,
@@ -112,7 +113,9 @@ import { ResetPasswordComponent } from './components/welcome/reset-password/rese
     ImageModule,
     AccordionModule,
     SpeedDialModule,
-    TooltipModule
+    TooltipModule,
+    OverlayPanelModule,
+    GalleriaModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AddTokenInterceptor, multi: true },
